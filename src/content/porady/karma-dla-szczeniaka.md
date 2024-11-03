@@ -3,7 +3,7 @@ title: "Jak wybrać odpowiednią karmę dla szczeniaka?"
 date: "2024-03-20"
 excerpt: "Przewodnik po wyborze najlepszej karmy dla młodego psa"
 author: "Dr Anna Kowalska"
-image: "../assets/images/puppies.jpg"
+image: "../../assets/images/puppies.jpg"
 ---
 
 
