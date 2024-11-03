@@ -244,15 +244,21 @@ const { title } = Astro.props;
 					// Reset menu state
 					closeMenu();
 
-					// Toggle menu
-					mobileMenuButton.addEventListener('click', () => {
-						const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+					// Remove existing event listeners
+					const newButton = mobileMenuButton.cloneNode(true);
+					mobileMenuButton.parentNode?.replaceChild(newButton, mobileMenuButton);
+
+					// Toggle menu with both click and touch events
+					newButton.addEventListener('click', (e) => {
+						e.preventDefault();
+						e.stopPropagation();
+						const isExpanded = newButton.getAttribute('aria-expanded') === 'true';
 						if (isExpanded) {
 							closeMenu();
 						} else {
 							openMenu();
 						}
-					});
+					}, { passive: false });
 
 					// Close menu when clicking links
 					mobileMenu.querySelectorAll('a').forEach(link => {
@@ -262,10 +268,18 @@ const { title } = Astro.props;
 					// Close menu when clicking outside
 					document.addEventListener('click', (event) => {
 						const target = event.target as Node;
-						if (!mobileMenuButton.contains(target) && !mobileMenu.contains(target)) {
+						if (!newButton.contains(target) && !mobileMenu.contains(target)) {
 							closeMenu();
 						}
 					});
+
+					// Handle touch events outside
+					document.addEventListener('touchstart', (event) => {
+						const target = event.target as Node;
+						if (!newButton.contains(target) && !mobileMenu.contains(target)) {
+							closeMenu();
+						}
+					}, { passive: true });
 
 					// Handle window resize
 					window.addEventListener('resize', () => {
