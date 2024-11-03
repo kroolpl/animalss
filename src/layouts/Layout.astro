@@ -111,6 +111,23 @@ const { title } = Astro.props;
 		</footer>
 
 		<script>
+			function handleClickOutside(event: MouseEvent | TouchEvent) {
+				const mobileMenu = document.getElementById('mobile-menu');
+				const mobileMenuButton = document.getElementById('mobile-menu-button');
+				const menuIcon = document.querySelector('.mobile-menu-icon');
+				const closeIcon = document.querySelector('.mobile-menu-close');
+
+				if (mobileMenu && mobileMenuButton && menuIcon && closeIcon) {
+					const target = event.target as Node;
+					if (!mobileMenuButton.contains(target) && !mobileMenu.contains(target)) {
+						mobileMenu.classList.add('hidden');
+						menuIcon.classList.remove('hidden');
+						closeIcon.classList.add('hidden');
+						mobileMenuButton.setAttribute('aria-expanded', 'false');
+					}
+				}
+			}
+
 			function setupMobileMenu() {
 				const mobileMenuButton = document.getElementById('mobile-menu-button');
 				const mobileMenu = document.getElementById('mobile-menu');
@@ -118,47 +135,52 @@ const { title } = Astro.props;
 				const closeIcon = document.querySelector('.mobile-menu-close');
 
 				if (mobileMenuButton && mobileMenu && menuIcon && closeIcon) {
+					// Remove existing event listeners if any
+					const oldButton = mobileMenuButton.cloneNode(true);
+					mobileMenuButton.parentNode?.replaceChild(oldButton, mobileMenuButton);
+
 					// Reset menu state
 					mobileMenu.classList.add('hidden');
 					menuIcon.classList.remove('hidden');
-					closeIcon.classList.add('hidden');
-					mobileMenuButton.setAttribute('aria-expanded', 'false');
+						closeIcon.classList.add('hidden');
+						oldButton.setAttribute('aria-expanded', 'false');
 
-					mobileMenuButton.addEventListener('click', () => {
-						const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
-						mobileMenuButton.setAttribute('aria-expanded', !isExpanded ? 'true' : 'false');
+					// Add click and touch event listeners
+					oldButton.addEventListener('click', (event) => {
+						event.stopPropagation();
+						const isExpanded = oldButton.getAttribute('aria-expanded') === 'true';
+						oldButton.setAttribute('aria-expanded', (!isExpanded).toString());
 						
 						mobileMenu.classList.toggle('hidden');
 						menuIcon.classList.toggle('hidden');
 						closeIcon.classList.toggle('hidden');
 					});
 
-					// Close menu when clicking outside
-					document.addEventListener('click', (event) => {
-						if (!mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
-							mobileMenu.classList.add('hidden');
-							menuIcon.classList.remove('hidden');
-							closeIcon.classList.add('hidden');
-							mobileMenuButton.setAttribute('aria-expanded', 'false');
-						}
-					});
-
-					// Close menu when clicking on a link
+					// Close menu when clicking on links
 					mobileMenu.querySelectorAll('a').forEach(link => {
 						link.addEventListener('click', () => {
 							mobileMenu.classList.add('hidden');
 							menuIcon.classList.remove('hidden');
 							closeIcon.classList.add('hidden');
-							mobileMenuButton.setAttribute('aria-expanded', 'false');
+							oldButton.setAttribute('aria-expanded', 'false');
 						});
 					});
 				}
+
+				// Remove existing click outside listener
+				document.removeEventListener('click', handleClickOutside);
+				document.removeEventListener('touchstart', handleClickOutside);
+
+				// Add new click outside listeners
+				document.addEventListener('click', handleClickOutside);
+				document.addEventListener('touchstart', handleClickOutside);
 			}
 
 			// Setup mobile menu on initial load
 			setupMobileMenu();
 
 			// Re-setup mobile menu after view transitions
+			document.addEventListener('astro:page-load', setupMobileMenu);
 			document.addEventListener('astro:after-swap', setupMobileMenu);
 
 			// Handle window resize
