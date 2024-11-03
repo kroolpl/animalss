@@ -1,0 +1,124 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Produkty - ANIMALS">
+    <!-- Hero Section -->
+    <div class="relative bg-gradient-to-b from-primary-900 to-primary-800 text-white">
+        <div class="absolute inset-0 bg-[url('/pattern.svg')] opacity-5"></div>
+        <div class="absolute top-20 right-20 w-64 h-64 bg-accent-500/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-10 left-10 w-96 h-96 bg-primary-700/20 rounded-full blur-3xl"></div>
+        <div class="container mx-auto px-4 py-24 relative">
+            <h1 class="font-display text-5xl md:text-6xl font-bold text-center mb-6">Nasze Produkty</h1>
+            <p class="text-center text-primary-100 max-w-2xl mx-auto text-lg">
+                Oferujemy szeroki wybór karm premium i akcesoriów dla Twojego pupila
+            </p>
+        </div>
+    </div>
+
+    <!-- Categories Section -->
+    <div class="bg-gradient-to-b from-primary-50 to-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+                <!-- Karma sucha -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden group hover:-translate-y-1 transition-all duration-300">
+                    <div class="aspect-[4/3] bg-primary-100 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary-900/20 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <h3 class="text-2xl font-bold text-white mb-2">Karma Sucha</h3>
+                            <p class="text-white/90">Premium, Super Premium, Holistic</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3 text-primary-700">
+                            <li class="flex items-center gap-2">
+                                <svg class="w-5 h-5 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Royal Canin
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-5 h-5 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Acana
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-5 h-5 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Orijen
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Karma mokra -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden group hover:-translate-y-1 transition-all duration-300">
+                    <div class="aspect-[4/3] bg-primary-100 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary-900/20 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <h3 class="text-2xl font-bold text-white mb-2">Karma Mokra</h3>
+                            <p class="text-white/90">Puszki, saszetki, pasztety</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3 text-primary-700">
+                            <li class="flex items-center gap-2">
+                                <svg class="w-5 h-5 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Animonda
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-5 h-5 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Schesir
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-5 h-5 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Applaws
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Przysmaki -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden group hover:-translate-y-1 transition-all duration-300">
+                    <div class="aspect-[4/3] bg-primary-100 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary-900/20 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <h3 class="text-2xl font-bold text-white mb-2">Przysmaki</h3>
+                            <p class="text-white/90">Zdrowe przekąski i nagrody</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <ul class="space-y-3 text-primary-700">
+                            <li class="flex items-center gap-2">
+                                <svg class="w-5 h-5 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Naturalne gryzaki
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-5 h-5 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Dental Sticks
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <svg class="w-5 h-5 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                                Przekąski treningowe
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</Layout> 
