@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
@@ -25,11 +26,15 @@ const sortedPorady = porady.sort((a, b) => new Date(b.data.date).getTime() - new
 						<a href={`/porady/${porada.slug}`} class="block">
 							{porada.data.image && (
 								<div class="relative overflow-hidden rounded-t-2xl aspect-[16/9]">
-									<img 
-										src={porada.data.image} 
+									<Image 
+										src={porada.data.image}
 										alt={porada.data.title}
+										width={800}
+										height={450}
 										class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
 										transition:name={`image-${porada.slug}`}
+										format="webp"
+										quality={80}
 									/>
 									<div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
 								</div>
