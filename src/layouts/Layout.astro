@@ -1,5 +1,7 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+
 interface Props {
 	title: string;
 }
@@ -11,25 +13,26 @@ const { title } = Astro.props;
 <html lang="pl">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
+		<meta name="description" content="Najlepsza karma dla Twojego pupila - profesjonalne doradztwo i szeroki wybór karm premium" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<ViewTransitions />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
 	</head>
-	<body>
-		<header class="bg-white shadow-sm" transition:persist>
+	<body class="antialiased">
+		<header class="bg-white shadow-sm sticky top-0 z-50" transition:persist>
 			<nav class="container mx-auto px-4 py-4">
 				<div class="flex items-center justify-between">
-					<a href="/" class="text-2xl font-display font-bold text-primary-900">
+					<a href="/" class="text-2xl font-display font-bold text-primary-900 relative z-50">
 						ANIMALS
 					</a>
 
 					<!-- Mobile menu button -->
 					<button 
 						id="mobile-menu-button" 
-						class="lg:hidden p-2 rounded-lg hover:bg-primary-50 transition-colors"
+						class="lg:hidden p-2 rounded-lg hover:bg-primary-50 transition-colors relative z-50"
 						aria-label="Menu"
 						aria-expanded="false"
 					>
@@ -79,9 +82,9 @@ const { title } = Astro.props;
 				<!-- Mobile menu panel -->
 				<div 
 					id="mobile-menu" 
-					class="lg:hidden hidden"
+					class="fixed inset-0 bg-white z-40 lg:hidden hidden pt-20"
 				>
-					<div class="py-4 space-y-4">
+					<div class="container mx-auto px-4 py-4 space-y-4">
 						<a href="/" class="block px-4 py-2 text-primary-600 hover:text-primary-900 hover:bg-primary-50 rounded-lg transition-colors">
 							Home
 						</a>
@@ -212,70 +215,65 @@ const { title } = Astro.props;
 			</div>
 		</footer>
 
+		<WhatsAppButton />
+
 		<script>
-			function handleClickOutside(event: MouseEvent | TouchEvent) {
-				const mobileMenu = document.getElementById('mobile-menu');
-				const mobileMenuButton = document.getElementById('mobile-menu-button');
-				const menuIcon = document.querySelector('.mobile-menu-icon');
-				const closeIcon = document.querySelector('.mobile-menu-close');
-
-				if (mobileMenu && mobileMenuButton && menuIcon && closeIcon) {
-					const target = event.target as Node;
-					if (!mobileMenuButton.contains(target) && !mobileMenu.contains(target)) {
-						mobileMenu.classList.add('hidden');
-						menuIcon.classList.remove('hidden');
-						closeIcon.classList.add('hidden');
-						mobileMenuButton.setAttribute('aria-expanded', 'false');
-					}
-				}
-			}
-
 			function setupMobileMenu() {
 				const mobileMenuButton = document.getElementById('mobile-menu-button');
 				const mobileMenu = document.getElementById('mobile-menu');
 				const menuIcon = document.querySelector('.mobile-menu-icon');
 				const closeIcon = document.querySelector('.mobile-menu-close');
 
-				if (mobileMenuButton && mobileMenu && menuIcon && closeIcon) {
-					// Remove existing event listeners if any
-					const oldButton = mobileMenuButton.cloneNode(true) as HTMLButtonElement;
-					mobileMenuButton.parentNode?.replaceChild(oldButton, mobileMenuButton);
-
-					// Reset menu state
-					mobileMenu.classList.add('hidden');
-					menuIcon.classList.remove('hidden');
-					closeIcon.classList.add('hidden');
-					oldButton.setAttribute('aria-expanded', 'false');
-
-					// Add click and touch event listeners
-					oldButton.addEventListener('click', (event) => {
-						event.stopPropagation();
-						const isExpanded = oldButton.getAttribute('aria-expanded') === 'true';
-						oldButton.setAttribute('aria-expanded', (!isExpanded).toString());
-						
-						mobileMenu.classList.toggle('hidden');
-						menuIcon.classList.toggle('hidden');
-						closeIcon.classList.toggle('hidden');
-					});
-
-					// Close menu when clicking on links
-					mobileMenu.querySelectorAll('a').forEach(link => {
-						link.addEventListener('click', () => {
-							mobileMenu.classList.add('hidden');
-							menuIcon.classList.remove('hidden');
-							closeIcon.classList.add('hidden');
-							oldButton.setAttribute('aria-expanded', 'false');
-						});
-					});
+				function closeMenu() {
+					mobileMenu?.classList.add('hidden');
+					menuIcon?.classList.remove('hidden');
+					closeIcon?.classList.add('hidden');
+					mobileMenuButton?.setAttribute('aria-expanded', 'false');
+					document.body.style.overflow = '';
 				}
 
-				// Remove existing click outside listener
-				document.removeEventListener('click', handleClickOutside);
-				document.removeEventListener('touchstart', handleClickOutside);
+				function openMenu() {
+					mobileMenu?.classList.remove('hidden');
+					menuIcon?.classList.add('hidden');
+					closeIcon?.classList.remove('hidden');
+					mobileMenuButton?.setAttribute('aria-expanded', 'true');
+					document.body.style.overflow = 'hidden';
+				}
 
-				// Add new click outside listeners
-				document.addEventListener('click', handleClickOutside);
-				document.addEventListener('touchstart', handleClickOutside);
+				if (mobileMenuButton && mobileMenu && menuIcon && closeIcon) {
+					// Reset menu state
+					closeMenu();
+
+					// Toggle menu
+					mobileMenuButton.addEventListener('click', () => {
+						const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+						if (isExpanded) {
+							closeMenu();
+						} else {
+							openMenu();
+						}
+					});
+
+					// Close menu when clicking links
+					mobileMenu.querySelectorAll('a').forEach(link => {
+						link.addEventListener('click', closeMenu);
+					});
+
+					// Close menu when clicking outside
+					document.addEventListener('click', (event) => {
+						const target = event.target as Node;
+						if (!mobileMenuButton.contains(target) && !mobileMenu.contains(target)) {
+							closeMenu();
+						}
+					});
+
+					// Handle window resize
+					window.addEventListener('resize', () => {
+						if (window.innerWidth >= 1024) {
+							closeMenu();
+						}
+					});
+				}
 			}
 
 			// Setup mobile menu on initial load
@@ -284,23 +282,6 @@ const { title } = Astro.props;
 			// Re-setup mobile menu after view transitions
 			document.addEventListener('astro:page-load', setupMobileMenu);
 			document.addEventListener('astro:after-swap', setupMobileMenu);
-
-			// Handle window resize
-			window.addEventListener('resize', () => {
-				if (window.innerWidth >= 1024) {
-					const mobileMenu = document.getElementById('mobile-menu');
-					const menuIcon = document.querySelector('.mobile-menu-icon');
-					const closeIcon = document.querySelector('.mobile-menu-close');
-					const mobileMenuButton = document.getElementById('mobile-menu-button');
-
-					if (mobileMenu && menuIcon && closeIcon && mobileMenuButton) {
-						mobileMenu.classList.add('hidden');
-						menuIcon.classList.remove('hidden');
-						closeIcon.classList.add('hidden');
-						mobileMenuButton.setAttribute('aria-expanded', 'false');
-					}
-				}
-			});
 		</script>
 	</body>
 </html>
