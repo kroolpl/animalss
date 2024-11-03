@@ -31,6 +31,7 @@ const { title } = Astro.props;
 						id="mobile-menu-button" 
 						class="lg:hidden p-2 rounded-lg hover:bg-primary-50 transition-colors"
 						aria-label="Menu"
+						aria-expanded="false"
 					>
 						<svg 
 							class="w-6 h-6 text-primary-600" 
@@ -39,7 +40,7 @@ const { title } = Astro.props;
 							viewBox="0 0 24 24"
 						>
 							<path 
-								class="mobile-menu-icon" 
+								class="mobile-menu-icon block" 
 								stroke-linecap="round" 
 								stroke-linejoin="round" 
 								stroke-width="2" 
@@ -101,37 +102,78 @@ const { title } = Astro.props;
 			</nav>
 		</header>
 
-		<!-- Rest of the layout remains the same -->
 		<main transition:animate="slide">
 			<slot />
 		</main>
 
 		<footer class="bg-primary-900 pt-20 pb-10" transition:persist>
-			<!-- Footer content remains the same -->
+			<!-- Footer content -->
 		</footer>
 
 		<script>
-			// Mobile menu functionality
-			const mobileMenuButton = document.getElementById('mobile-menu-button');
-			const mobileMenu = document.getElementById('mobile-menu');
-			const menuIcon = document.querySelector('.mobile-menu-icon');
-			const closeIcon = document.querySelector('.mobile-menu-close');
+			function setupMobileMenu() {
+				const mobileMenuButton = document.getElementById('mobile-menu-button');
+				const mobileMenu = document.getElementById('mobile-menu');
+				const menuIcon = document.querySelector('.mobile-menu-icon');
+				const closeIcon = document.querySelector('.mobile-menu-close');
 
-			if (mobileMenuButton && mobileMenu && menuIcon && closeIcon) {
-				mobileMenuButton.addEventListener('click', () => {
-					mobileMenu.classList.toggle('hidden');
-					menuIcon.classList.toggle('hidden');
-					closeIcon.classList.toggle('hidden');
-				});
+				if (mobileMenuButton && mobileMenu && menuIcon && closeIcon) {
+					// Reset menu state
+					mobileMenu.classList.add('hidden');
+					menuIcon.classList.remove('hidden');
+					closeIcon.classList.add('hidden');
+					mobileMenuButton.setAttribute('aria-expanded', 'false');
+
+					mobileMenuButton.addEventListener('click', () => {
+						const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+						mobileMenuButton.setAttribute('aria-expanded', !isExpanded ? 'true' : 'false');
+						
+						mobileMenu.classList.toggle('hidden');
+						menuIcon.classList.toggle('hidden');
+						closeIcon.classList.toggle('hidden');
+					});
+
+					// Close menu when clicking outside
+					document.addEventListener('click', (event) => {
+						if (!mobileMenuButton.contains(event.target) && !mobileMenu.contains(event.target)) {
+							mobileMenu.classList.add('hidden');
+							menuIcon.classList.remove('hidden');
+							closeIcon.classList.add('hidden');
+							mobileMenuButton.setAttribute('aria-expanded', 'false');
+						}
+					});
+
+					// Close menu when clicking on a link
+					mobileMenu.querySelectorAll('a').forEach(link => {
+						link.addEventListener('click', () => {
+							mobileMenu.classList.add('hidden');
+							menuIcon.classList.remove('hidden');
+							closeIcon.classList.add('hidden');
+							mobileMenuButton.setAttribute('aria-expanded', 'false');
+						});
+					});
+				}
 			}
 
-			// Close mobile menu on window resize if screen becomes large
+			// Setup mobile menu on initial load
+			setupMobileMenu();
+
+			// Re-setup mobile menu after view transitions
+			document.addEventListener('astro:after-swap', setupMobileMenu);
+
+			// Handle window resize
 			window.addEventListener('resize', () => {
-				if (window.innerWidth >= 1024 && mobileMenu) { // 1024px is the 'lg' breakpoint
-					mobileMenu.classList.add('hidden');
-					if (menuIcon && closeIcon) {
+				if (window.innerWidth >= 1024) {
+					const mobileMenu = document.getElementById('mobile-menu');
+					const menuIcon = document.querySelector('.mobile-menu-icon');
+					const closeIcon = document.querySelector('.mobile-menu-close');
+					const mobileMenuButton = document.getElementById('mobile-menu-button');
+
+					if (mobileMenu && menuIcon && closeIcon && mobileMenuButton) {
+						mobileMenu.classList.add('hidden');
 						menuIcon.classList.remove('hidden');
 						closeIcon.classList.add('hidden');
+						mobileMenuButton.setAttribute('aria-expanded', 'false');
 					}
 				}
 			});
