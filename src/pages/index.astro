@@ -1,0 +1,138 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="ANIMALS - Premium Pet Food & Care">
+	<div class="relative bg-gradient-to-br from-primary-800 to-primary-900 overflow-hidden">
+		<div class="absolute top-20 right-20 w-64 h-64 bg-accent-500/10 rounded-full blur-3xl"></div>
+		<div class="absolute bottom-10 left-10 w-96 h-96 bg-primary-700/20 rounded-full blur-3xl"></div>
+		
+		<div class="container mx-auto px-4 py-24 relative">
+			<div class="max-w-3xl animate-fade-in">
+				<h1 class="text-5xl md:text-7xl font-display font-bold text-white leading-tight mb-6">
+					Najlepsza karma dla Twojego 
+					<span class="text-accent-400">pupila</span>
+				</h1>
+				<p class="text-xl text-primary-100 mb-8 max-w-2xl">
+					Oferujemy starannie wyselekcjonowaną karmę premium i profesjonalne doradztwo dla zdrowia i szczęścia Twojego zwierzaka
+				</p>
+				<div class="flex flex-wrap gap-4">
+					<a href="/kontakt" class="bg-accent-500 text-white px-8 py-4 rounded-full font-medium hover:bg-accent-600 transition-colors shadow-lg hover:shadow-xl">
+						Odwiedź nas
+					</a>
+					<a href="/porady" class="bg-white/10 text-white px-8 py-4 rounded-full font-medium hover:bg-white/20 transition-colors backdrop-blur-sm">
+						Zobacz porady
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<section class="container mx-auto px-4 py-24">
+		<h2 class="text-3xl md:text-4xl font-display font-bold text-center mb-16">Dlaczego warto nas wybrać?</h2>
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+			<div class="group p-8 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 animate-slide-up">
+				<div class="text-4xl mb-6 transform group-hover:scale-110 transition-transform">🏆</div>
+				<h3 class="text-xl font-bold mb-4 text-primary-800">Najwyższa jakość</h3>
+				<p class="text-primary-600">Oferujemy tylko sprawdzone karmy premium od renomowanych producentów</p>
+			</div>
+			<div class="group p-8 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 animate-slide-up [animation-delay:200ms]">
+				<div class="text-4xl mb-6 transform group-hover:scale-110 transition-transform">💡</div>
+				<h3 class="text-xl font-bold mb-4 text-primary-800">Profesjonalne doradztwo</h3>
+				<p class="text-primary-600">Nasi eksperci pomogą dobrać odpowiednią karmę dla Twojego zwierzaka</p>
+			</div>
+			<div class="group p-8 bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 animate-slide-up [animation-delay:400ms]">
+				<div class="text-4xl mb-6 transform group-hover:scale-110 transition-transform">❤️</div>
+				<h3 class="text-xl font-bold mb-4 text-primary-800">Pasja i zaangażowanie</h3>
+				<p class="text-primary-600">Kochamy zwierzęta i dzielimy się naszą wiedzą z klientami</p>
+			</div>
+		</div>
+	</section>
+
+	<section class="bg-gradient-to-br from-primary-50 via-white to-primary-50 py-24">
+		<div class="container mx-auto px-4 relative">
+			<h2 class="text-3xl md:text-4xl font-display font-bold text-center mb-16">Nasze produkty</h2>
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+				<div class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden hover:-translate-y-1">
+					<div class="p-8">
+						<div class="w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary-200 group-hover:rotate-6 transition-all duration-300">
+							<span class="text-2xl">🦮</span>
+						</div>
+						<h3 class="text-xl font-bold mb-3 text-primary-800">Karma sucha</h3>
+						<p class="text-primary-600">Szeroki wybór suchej karmy dla psów i kotów</p>
+					</div>
+				</div>
+				<div class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden">
+					<div class="p-8">
+						<div class="w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary-200 transition-colors">
+							<span class="text-2xl">🐱</span>
+						</div>
+						<h3 class="text-xl font-bold mb-3 text-primary-800">Karma mokra</h3>
+						<p class="text-primary-600">Wysokiej jakości karma mokra różnych marek</p>
+					</div>
+				</div>
+				<div class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden">
+					<div class="p-8">
+						<div class="w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary-200 transition-colors">
+							<span class="text-2xl">🦴</span>
+						</div>
+						<h3 class="text-xl font-bold mb-3 text-primary-800">Przysmaki</h3>
+						<p class="text-primary-600">Zdrowe przekąski i przysmaki</p>
+					</div>
+				</div>
+				<div class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden">
+					<div class="p-8">
+						<div class="w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-primary-200 transition-colors">
+							<span class="text-2xl">💊</span>
+						</div>
+						<h3 class="text-xl font-bold mb-3 text-primary-800">Suplementy</h3>
+						<p class="text-primary-600">Witaminy i suplementy diety</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="container mx-auto px-4 py-24">
+		<div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
+			<div class="grid md:grid-cols-2">
+				<div class="p-12 bg-gradient-to-br from-primary-800 to-primary-900 text-white relative overflow-hidden">
+					<div class="absolute inset-0 bg-[url('/pattern.svg')] opacity-5"></div>
+					<div class="relative">
+						<h2 class="text-3xl font-display font-bold mb-6">Skontaktuj się z nami</h2>
+						<p class="text-primary-100 mb-8">Masz pytania? Jesteśmy do Twojej dyspozycji! Pomożemy dobrać najlepszą karmę dla Twojego pupila.</p>
+						<div class="space-y-4">
+							<a href="tel:+48123456789" class="flex items-center text-primary-100 hover:text-white transition-colors">
+								<svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+								</svg>
+								+48 123 456 789
+							</a>
+							<a href="mailto:kontakt@animals.pl" class="flex items-center text-primary-100 hover:text-white transition-colors">
+								<svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+								</svg>
+								kontakt@animals.pl
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="p-12">
+					<form class="space-y-6">
+						<div>
+							<label class="block text-sm font-medium text-primary-700 mb-2">Imię i nazwisko</label>
+							<input type="text" class="w-full px-4 py-3 rounded-lg border border-primary-200 focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors">
+						</div>
+						<div>
+							<label class="block text-sm font-medium text-primary-700 mb-2">Email</label>
+							<input type="email" class="w-full px-4 py-3 rounded-lg border border-primary-200 focus:ring-2 focus:ring-accent-500 focus:border-accent-500 transition-colors">
+						</div>
+						<button type="submit" class="w-full bg-accent-500 text-white py-3 px-6 rounded-lg hover:bg-accent-600 transition-colors font-medium">
+							Wyślij wiadomość
+						</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+</Layout>

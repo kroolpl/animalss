@@ -1,0 +1,144 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="pl">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<ViewTransitions />
+	</head>
+	<body>
+		<header class="bg-white shadow-sm" transition:persist>
+			<nav class="container mx-auto px-4 py-4">
+				<div class="flex items-center justify-between">
+					<a href="/" class="text-2xl font-display font-bold text-primary-900">
+						ANIMALS
+					</a>
+
+					<!-- Mobile menu button -->
+					<button 
+						id="mobile-menu-button" 
+						class="lg:hidden p-2 rounded-lg hover:bg-primary-50 transition-colors"
+						aria-label="Menu"
+					>
+						<svg 
+							class="w-6 h-6 text-primary-600" 
+							fill="none" 
+							stroke="currentColor" 
+							viewBox="0 0 24 24"
+						>
+							<path 
+								class="mobile-menu-icon" 
+								stroke-linecap="round" 
+								stroke-linejoin="round" 
+								stroke-width="2" 
+								d="M4 6h16M4 12h16M4 18h16"
+							/>
+							<path 
+								class="mobile-menu-close hidden" 
+								stroke-linecap="round" 
+								stroke-linejoin="round" 
+								stroke-width="2" 
+								d="M6 18L18 6M6 6l12 12"
+							/>
+						</svg>
+					</button>
+
+					<!-- Desktop menu -->
+					<div class="hidden lg:flex items-center gap-8">
+						<a href="/" class="text-primary-600 hover:text-primary-900 transition-colors">
+							Home
+						</a>
+						<a href="/produkty" class="text-primary-600 hover:text-primary-900 transition-colors">
+							Produkty
+						</a>
+						<a href="/o-nas" class="text-primary-600 hover:text-primary-900 transition-colors">
+							O nas
+						</a>
+						<a href="/porady" class="text-primary-600 hover:text-primary-900 transition-colors">
+							Porady
+						</a>
+						<a href="/kontakt" class="bg-accent-500 text-white px-4 py-2 rounded-full hover:bg-accent-600 transition-colors">
+							Kontakt
+						</a>
+					</div>
+				</div>
+
+				<!-- Mobile menu panel -->
+				<div 
+					id="mobile-menu" 
+					class="lg:hidden hidden"
+				>
+					<div class="py-4 space-y-4">
+						<a href="/" class="block px-4 py-2 text-primary-600 hover:text-primary-900 hover:bg-primary-50 rounded-lg transition-colors">
+							Home
+						</a>
+						<a href="/produkty" class="block px-4 py-2 text-primary-600 hover:text-primary-900 hover:bg-primary-50 rounded-lg transition-colors">
+							Produkty
+						</a>
+						<a href="/o-nas" class="block px-4 py-2 text-primary-600 hover:text-primary-900 hover:bg-primary-50 rounded-lg transition-colors">
+							O nas
+						</a>
+						<a href="/porady" class="block px-4 py-2 text-primary-600 hover:text-primary-900 hover:bg-primary-50 rounded-lg transition-colors">
+							Porady
+						</a>
+						<a href="/kontakt" class="block px-4 py-2 bg-accent-500 text-white hover:bg-accent-600 rounded-lg transition-colors">
+							Kontakt
+						</a>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+		<!-- Rest of the layout remains the same -->
+		<main transition:animate="slide">
+			<slot />
+		</main>
+
+		<footer class="bg-primary-900 pt-20 pb-10" transition:persist>
+			<!-- Footer content remains the same -->
+		</footer>
+
+		<script>
+			// Mobile menu functionality
+			const mobileMenuButton = document.getElementById('mobile-menu-button');
+			const mobileMenu = document.getElementById('mobile-menu');
+			const menuIcon = document.querySelector('.mobile-menu-icon');
+			const closeIcon = document.querySelector('.mobile-menu-close');
+
+			if (mobileMenuButton && mobileMenu && menuIcon && closeIcon) {
+				mobileMenuButton.addEventListener('click', () => {
+					mobileMenu.classList.toggle('hidden');
+					menuIcon.classList.toggle('hidden');
+					closeIcon.classList.toggle('hidden');
+				});
+			}
+
+			// Close mobile menu on window resize if screen becomes large
+			window.addEventListener('resize', () => {
+				if (window.innerWidth >= 1024 && mobileMenu) { // 1024px is the 'lg' breakpoint
+					mobileMenu.classList.add('hidden');
+					if (menuIcon && closeIcon) {
+						menuIcon.classList.remove('hidden');
+						closeIcon.classList.add('hidden');
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
+
+<style>
+	/* Add any additional styles here */
+</style>
