@@ -136,14 +136,14 @@ const { title } = Astro.props;
 
 				if (mobileMenuButton && mobileMenu && menuIcon && closeIcon) {
 					// Remove existing event listeners if any
-					const oldButton = mobileMenuButton.cloneNode(true);
+					const oldButton = mobileMenuButton.cloneNode(true) as HTMLButtonElement;
 					mobileMenuButton.parentNode?.replaceChild(oldButton, mobileMenuButton);
 
 					// Reset menu state
 					mobileMenu.classList.add('hidden');
 					menuIcon.classList.remove('hidden');
-						closeIcon.classList.add('hidden');
-						oldButton.setAttribute('aria-expanded', 'false');
+					closeIcon.classList.add('hidden');
+					oldButton.setAttribute('aria-expanded', 'false');
 
 					// Add click and touch event listeners
 					oldButton.addEventListener('click', (event) => {
