@@ -1,0 +1,81 @@
+---
+import { Image } from 'astro:assets';
+import FloatingElements from './FloatingElements.astro';
+
+interface Props {
+    title: string;
+    titleAccent?: string;
+    description: string;
+    image: ImageMetadata;
+    primaryButton?: {
+        text: string;
+        href: string;
+    };
+    secondaryButton?: {
+        text: string;
+        href: string;
+    };
+}
+
+const { 
+    title, 
+    titleAccent, 
+    description, 
+    image,
+    primaryButton,
+    secondaryButton
+} = Astro.props;
+---
+
+<div class="relative bg-gradient-to-br from-primary-800 to-primary-900 overflow-hidden">
+    <!-- Background Image with Overlay -->
+    <div class="absolute inset-0">
+        <Image 
+            src={image} 
+            alt="Hero background"
+            class="w-full h-full object-cover object-center"
+            quality={90}
+            format="webp"
+        />
+        <div class="absolute inset-0 bg-gradient-to-br from-primary-800/95 to-primary-900/95"></div>
+    </div>
+
+    <!-- Pattern and Decorative Elements -->
+    <div class="absolute inset-0 bg-[url('/pattern.svg')] opacity-5"></div>
+    <div class="absolute top-20 right-20 w-64 h-64 bg-accent-500/10 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-10 left-10 w-96 h-96 bg-primary-700/20 rounded-full blur-3xl"></div>
+    <FloatingElements />
+    
+    <!-- Content -->
+    <div class="container mx-auto px-4 py-24 relative">
+        <div class="max-w-3xl animate-fade-in">
+            <h1 class="text-5xl md:text-7xl font-display font-bold text-white leading-tight mb-6">
+                {title}
+                {titleAccent && <span class="text-accent-400">{titleAccent}</span>}
+            </h1>
+            <p class="text-xl text-primary-100 mb-8 max-w-2xl">
+                {description}
+            </p>
+            {(primaryButton || secondaryButton) && (
+                <div class="flex flex-wrap gap-4">
+                    {primaryButton && (
+                        <a 
+                            href={primaryButton.href} 
+                            class="bg-accent-500 text-white px-8 py-4 rounded-full font-medium hover:bg-accent-600 transition-colors shadow-lg hover:shadow-xl"
+                        >
+                            {primaryButton.text}
+                        </a>
+                    )}
+                    {secondaryButton && (
+                        <a 
+                            href={secondaryButton.href} 
+                            class="bg-white/10 text-white px-8 py-4 rounded-full font-medium hover:bg-white/20 transition-colors backdrop-blur-sm"
+                        >
+                            {secondaryButton.text}
+                        </a>
+                    )}
+                </div>
+            )}
+        </div>
+    </div>
+</div> 

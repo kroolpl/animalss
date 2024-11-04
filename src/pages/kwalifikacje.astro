@@ -1,5 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import dyplom1 from '../assets/dyplom1.jpg';
+import dyplom2 from '../assets/dyplom2.jpg';
+import dyplom3 from '../assets/dyplom3.jpg';
+import dyplom4 from '../assets/dyplom4.jpg';
 ---
 
 <Layout title="Kwalifikacje - ANIMALS">
@@ -11,93 +16,122 @@ import Layout from '../layouts/Layout.astro';
         <div class="container mx-auto px-4 py-24 relative">
             <h1 class="font-display text-5xl md:text-6xl font-bold text-center mb-6">Nasze Kwalifikacje</h1>
             <p class="text-center text-primary-100 max-w-2xl mx-auto text-lg">
-                Poznaj nasze doświadczenie i wiedzę w zakresie żywienia zwierząt i doboru odpowiedniej karmy
+                Poznaj nasze certyfikaty i dyplomy potwierdzające naszą wiedzę i kompetencje w zakresie żywienia zwierząt
             </p>
         </div>
     </div>
 
     <!-- Main Content -->
-    <div class="bg-gradient-to-b from-primary-50 to-white">
+    <div class="bg-gradient-to-b from-primary-50 to-white min-h-screen">
         <div class="container mx-auto px-4 py-16">
-            <div class="max-w-4xl mx-auto">
-                <!-- Education Section -->
-                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 mb-8">
-                    <h2 class="text-2xl md:text-3xl font-display font-bold mb-8 text-primary-900">Wykształcenie i Certyfikaty</h2>
-                    <div class="space-y-6">
-                        <div class="flex gap-6">
-                            <div class="w-12 h-12 bg-accent-50 rounded-xl flex items-center justify-center flex-shrink-0">
-                                <svg class="w-6 h-6 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-primary-900 mb-2">Certyfikowany Doradca Żywieniowy Zwierząt</h3>
-                                <p class="text-primary-600">Ukończone szkolenie z zakresu żywienia psów i kotów, ze szczególnym uwzględnieniem doboru karmy do wieku i stanu zdrowia zwierzęcia.</p>
-                            </div>
+            <!-- Continuous Education -->
+            <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-8 md:p-12 mb-12">
+                <h2 class="text-2xl md:text-3xl font-display font-bold mb-8 text-primary-900">Ciągłe Doskonalenie</h2>
+                <div class="space-y-6">
+                    <div class="flex gap-6">
+                        <div class="w-12 h-12 bg-accent-50 rounded-xl flex items-center justify-center flex-shrink-0">
+                            <svg class="w-6 h-6 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                            </svg>
                         </div>
-
-                        <div class="flex gap-6">
-                            <div class="w-12 h-12 bg-accent-50 rounded-xl flex items-center justify-center flex-shrink-0">
-                                <svg class="w-6 h-6 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-primary-900 mb-2">Specjalista ds. Żywienia Premium</h3>
-                                <p class="text-primary-600">Certyfikaty od wiodących producentów karm premium, potwierdzające znajomość składu i właściwości produktów wysokiej jakości.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Experience Section -->
-                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 mb-8">
-                    <h2 class="text-2xl md:text-3xl font-display font-bold mb-8 text-primary-900">Doświadczenie</h2>
-                    <div class="space-y-6">
-                        <div class="flex gap-6">
-                            <div class="w-12 h-12 bg-accent-50 rounded-xl flex items-center justify-center flex-shrink-0">
-                                <svg class="w-6 h-6 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-primary-900 mb-2">10+ Lat w Branży</h3>
-                                <p class="text-primary-600">Wieloletnie doświadczenie w doradztwie żywieniowym dla zwierząt domowych i współpraca z lekarzami weterynarii.</p>
-                            </div>
-                        </div>
-
-                        <div class="flex gap-6">
-                            <div class="w-12 h-12 bg-accent-50 rounded-xl flex items-center justify-center flex-shrink-0">
-                                <svg class="w-6 h-6 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-primary-900 mb-2">Tysiące Zadowolonych Klientów</h3>
-                                <p class="text-primary-600">Skuteczne doradztwo i indywidualne podejście do potrzeb każdego zwierzęcia.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Continuous Education -->
-                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12">
-                    <h2 class="text-2xl md:text-3xl font-display font-bold mb-8 text-primary-900">Ciągłe Doskonalenie</h2>
-                    <div class="space-y-6">
-                        <div class="flex gap-6">
-                            <div class="w-12 h-12 bg-accent-50 rounded-xl flex items-center justify-center flex-shrink-0">
-                                <svg class="w-6 h-6 text-accent-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-xl font-bold text-primary-900 mb-2">Regularne Szkolenia</h3>
-                                <p class="text-primary-600">Uczestnictwo w konferencjach i szkoleniach dotyczących najnowszych trendów w żywieniu zwierząt oraz współpraca z ekspertami z branży.</p>
-                            </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-primary-900 mb-2">Regularne Szkolenia</h3>
+                            <p class="text-primary-600">Uczestnictwo w konferencjach i szkoleniach dotyczących najnowszych trendów w żywieniu zwierząt oraz współpraca z ekspertami z branży.</p>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Diplomas Section -->
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-2xl md:text-3xl font-display font-bold mb-8 text-primary-900 text-center">Certyfikaty i Dyplomy</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    {[
+                        { src: dyplom1, alt: "Certyfikat specjalisty żywienia zwierząt" },
+                        { src: dyplom2, alt: "Dyplom ukończenia kursu dietetyki zwierząt" },
+                        { src: dyplom3, alt: "Certyfikat doradcy żywieniowego" },
+                        { src: dyplom4, alt: "Dyplom specjalisty ds. żywienia psów i kotów" }
+                    ].map((diploma) => (
+                        <div class="group cursor-pointer" onclick={`openModal('${diploma.alt}')`}>
+                            <div class="relative overflow-hidden rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+                                <Image 
+                                    src={diploma.src}
+                                    alt={diploma.alt}
+                                    class="w-full transform group-hover:scale-105 transition-transform duration-300"
+                                    format="webp"
+                                    quality={85}
+                                />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                                    <div class="p-4 text-white">
+                                        <p class="font-medium">{diploma.alt}</p>
+                                        <p class="text-sm text-white/80">Kliknij, aby powiększyć</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
     </div>
-</Layout> 
+
+    <!-- Modal -->
+    <div id="imageModal" class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center p-4">
+        <button onclick="closeModal()" class="absolute top-4 right-4 text-white hover:text-accent-400 transition-colors">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </button>
+        <div class="relative max-w-5xl w-full">
+            <img id="modalImage" src="" alt="" class="w-full h-auto rounded-lg">
+        </div>
+    </div>
+</Layout>
+
+<script>
+    function setupImageModal() {
+        // Store references to modal elements
+        const modal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImage');
+
+        // Make these functions available globally
+        window.openModal = function(alt) {
+            const img = document.querySelector(`img[alt="${alt}"]`);
+            if (img && modal && modalImg) {
+                modalImg.src = img.src;
+                modalImg.alt = alt;
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+        };
+
+        window.closeModal = function() {
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = '';
+            }
+        };
+
+        // Close modal when clicking outside the image
+        modal?.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    }
+
+    // Setup modal on initial load
+    setupImageModal();
+
+    // Re-setup modal after view transitions
+    document.addEventListener('astro:page-load', setupImageModal);
+</script> 
