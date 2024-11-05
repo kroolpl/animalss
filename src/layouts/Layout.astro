@@ -166,15 +166,15 @@ const { title } = Astro.props;
 									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
 								</svg>
 								<div>
-									<p>ul. Przykładowa 123</p>
-									<p>00-000 Warszawa</p>
+									<p>ul. Polska 5</p>
+									<p>67-200 Głogów</p>
 								</div>
 							</li>
 							<li class="flex items-center gap-3">
 								<svg class="w-6 h-6 text-accent-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
 								</svg>
-								<span>+48 123 456 789</span>
+								<span>886 147 831</span>
 							</li>
 						</ul>
 					</div>
@@ -221,12 +221,12 @@ const { title } = Astro.props;
 		<WhatsAppButton />
 
 		<div id="mobile-menu" 
-			 class="fixed inset-x-0 top-[60px] bg-gradient-to-b from-primary-900/95 to-primary-800/95 backdrop-blur-md 
-					lg:hidden hidden p-4 shadow-lg"
+			 class="fixed inset-x-0 top-[64px] bg-gradient-to-b from-primary-900/95 to-primary-800/95 backdrop-blur-md 
+					lg:hidden hidden p-4 shadow-lg z-40"
 			 aria-label="Mobile navigation"
 		>
-			<nav class="space-y-4">
-				<a href="/" class="block px-4 py-3 text-primary-100 hover:text-white hover:bg-white/10 rounded-xl transition-colors">
+			<nav class="space-y-4 relative">
+				<a href="/" class="block px-4 py-3 text-primary-100 hover:text-white hover:bg-white/10 rounded-xl transition-colors relative z-10">
 					Strona główna
 				</a>
 				<a href="/produkty" class="block px-4 py-3 text-primary-100 hover:text-white hover:bg-white/10 rounded-xl transition-colors">
