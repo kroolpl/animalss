@@ -1,11 +1,21 @@
 ---
 import { Image } from 'astro:assets';
 import FloatingElements from './FloatingElements.astro';
+import type { ImageMetadata } from 'astro';
 
 interface Props {
     title: string;
     description?: string;
     titleAccent?: string;
+    image?: ImageMetadata;
+    primaryButton?: {
+        text: string;
+        href: string;
+    };
+    secondaryButton?: {
+        text: string;
+        href: string;
+    };
 }
 
 const { title, description, titleAccent } = Astro.props;

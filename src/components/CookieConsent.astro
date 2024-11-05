@@ -1,0 +1,52 @@
+---
+---
+<div id="cookie-consent" class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-lg transform translate-y-full transition-transform duration-500 z-50">
+    <div class="container mx-auto px-4 py-4">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="text-primary-600 text-sm">
+                Ta strona używa plików cookie do analizy ruchu i personalizacji treści. 
+                Korzystając ze strony, zgadzasz się na używanie plików cookie.
+            </div>
+            <div class="flex gap-4">
+                <button 
+                    id="accept-cookies"
+                    class="bg-accent-500 text-white px-6 py-2 rounded-lg hover:bg-accent-600 transition-colors text-sm font-medium"
+                >
+                    Akceptuję
+                </button>
+                <a 
+                    href="/polityka-prywatnosci" 
+                    class="text-primary-600 hover:text-primary-900 transition-colors text-sm font-medium"
+                >
+                    Więcej informacji
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function setupCookieConsent() {
+        const banner = document.getElementById('cookie-consent');
+        const acceptButton = document.getElementById('accept-cookies');
+        
+        // Check if user has already accepted cookies
+        if (!localStorage.getItem('cookiesAccepted') && banner) {
+            // Show banner with slight delay
+            setTimeout(() => {
+                banner.classList.remove('translate-y-full');
+            }, 1000);
+        }
+
+        acceptButton?.addEventListener('click', () => {
+            localStorage.setItem('cookiesAccepted', 'true');
+            banner?.classList.add('translate-y-full');
+        });
+    }
+
+    // Setup on initial load
+    setupCookieConsent();
+
+    // Re-setup after view transitions
+    document.addEventListener('astro:page-load', setupCookieConsent);
+</script> 

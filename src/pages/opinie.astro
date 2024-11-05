@@ -1,0 +1,127 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import { Image } from 'astro:assets';
+
+// Import dog images
+import dog1 from '../assets/testimonials/dog1.jpg';
+import dog2 from '../assets/testimonials/dog2.jpg';
+import dog3 from '../assets/testimonials/dog3.jpg';
+import dog4 from '../assets/testimonials/dog4.jpg';
+
+const testimonials = [
+    {
+        name: "Reksio",
+        image: dog1,
+        breed: "Golden Retriever",
+        message: "Hau! Odkąd mój człowiek kupuje karmę w ANIMALS, moja sierść lśni jak nigdy dotąd! Nawet listonosz to zauważył! 🦮✨",
+        age: "4 lata"
+    },
+    {
+        name: "Luna",
+        image: dog2,
+        breed: "Husky",
+        message: "Wreszcie karma, która zaspokaja mój wilczy apetyt! Teraz mam energię na wykopanie jeszcze więcej dziur w ogrodzie! 🐾🌸",
+        age: "3 lata"
+    },
+    {
+        name: "Max",
+        image: dog3,
+        breed: "Beagle",
+        message: "Te przysmaki są tak pyszne, że nawet przestałem podkradać kapcie! No... prawie. 🧦😋",
+        age: "2 lata"
+    },
+    {
+        name: "Bella",
+        image: dog4,
+        breed: "Yorkshire Terrier",
+        message: "Mała księżniczka jak ja zasługuje na najlepsze! W końcu znalazłam karmę godną mojego podniebienia! 👑✨",
+        age: "5 lat"
+    }
+];
+---
+
+<Layout title="Opinie - ANIMALS">
+    <Hero 
+        title="Co mówią nasi"
+        titleAccent="czworonożni klienci"
+        description="Poznaj opinie naszych zadowolonych podopiecznych i ich właścicieli"
+    />
+
+    <div class="bg-gradient-to-b from-primary-50 to-white min-h-screen">
+        <div class="container mx-auto px-4 py-16">
+            <div class="max-w-6xl mx-auto space-y-16">
+                {testimonials.map((testimonial, index) => (
+                    <div class={`flex items-center gap-8 ${index % 2 === 1 ? 'flex-row-reverse' : ''}`}>
+                        <!-- Dog Avatar -->
+                        <div class="relative flex-shrink-0 group">
+                            <div class="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-accent-500 shadow-xl transform transition-transform duration-300 group-hover:scale-105">
+                                <Image 
+                                    src={testimonial.image} 
+                                    alt={testimonial.name}
+                                    class="w-full h-full object-cover"
+                                    width={160}
+                                    height={160}
+                                />
+                            </div>
+                            <div class="absolute -bottom-2 right-0 bg-accent-500 text-white px-3 py-1 rounded-full text-sm font-medium shadow-lg">
+                                {testimonial.age}
+                            </div>
+                        </div>
+
+                        <!-- Speech Bubble -->
+                        <div class={`relative bg-white rounded-2xl p-6 shadow-xl flex-1 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl
+                                    ${index % 2 === 0 ? 'speech-bubble-right' : 'speech-bubble-left'}`}>
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-3">
+                                    <h3 class="text-xl font-bold text-primary-900">{testimonial.name}</h3>
+                                    <span class="text-sm text-primary-500">{testimonial.breed}</span>
+                                </div>
+                                <p class="text-lg text-primary-600 leading-relaxed">
+                                    {testimonial.message}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            <!-- Call to Action -->
+            <div class="mt-24 text-center">
+                <a 
+                    href="/kontakt" 
+                    class="inline-flex items-center gap-2 bg-accent-500 text-white px-8 py-4 rounded-full font-medium hover:bg-accent-600 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                >
+                    Dołącz do zadowolonych klientów
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</Layout>
+
+<style>
+    .speech-bubble-right::after {
+        content: '';
+        position: absolute;
+        left: -20px;
+        top: 50%;
+        transform: translateY(-50%);
+        border-width: 10px;
+        border-style: solid;
+        border-color: transparent white transparent transparent;
+    }
+
+    .speech-bubble-left::after {
+        content: '';
+        position: absolute;
+        right: -20px;
+        top: 50%;
+        transform: translateY(-50%);
+        border-width: 10px;
+        border-style: solid;
+        border-color: transparent transparent transparent white;
+    }
+</style> 

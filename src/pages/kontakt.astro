@@ -1,6 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
+
+// Add types for form data
+interface FormData {
+    name: string;
+    email: string;
+    subject: string;
+    message: string;
+}
 ---
 
 <Layout title="Kontakt - ANIMALS">

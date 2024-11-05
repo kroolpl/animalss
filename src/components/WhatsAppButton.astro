@@ -1,7 +1,8 @@
 ---
-const whatsappNumber = "+48886147831"; // Updated phone number
-const whatsappMessage = "Dzień dobry, mam pytanie odnośnie karmy dla zwierzaka...";
-const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+// Add type safety for phone number and message
+const whatsappNumber: string = "+48886147831";
+const whatsappMessage: string = "Dzień dobry, mam pytanie odnośnie karmy dla zwierzaka...";
+const whatsappUrl: string = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 ---
 
 <a 

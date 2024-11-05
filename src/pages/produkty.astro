@@ -1,6 +1,49 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
+
+const products = [
+    {
+        category: "Karma sucha",
+        icon: "🦮",
+        items: [
+            { name: "Royal Canin", description: "Szeroka gama karm dopasowanych do rasy, wieku i potrzeb" },
+            { name: "Purina Pro Plan", description: "Formuły oparte na najnowszych badaniach żywieniowych" },
+            { name: "Acana", description: "Naturalne składniki i wysokiej jakości białko" },
+            { name: "Orijen", description: "Biologicznie odpowiednia dieta bogata w mięso" }
+        ]
+    },
+    {
+        category: "Karma mokra",
+        icon: "🐱",
+        items: [
+            { name: "Animonda", description: "Delikatne kawałki w sosie własnym" },
+            { name: "Schesir", description: "Naturalne składniki bez konserwantów" },
+            { name: "Applaws", description: "Premium karma z dodatkiem bulionu" },
+            { name: "Cosma", description: "Wysoka zawartość mięsa i naturalne dodatki" }
+        ]
+    },
+    {
+        category: "Przysmaki",
+        icon: "🦴",
+        items: [
+            { name: "Dentastix", description: "Przysmaki dentystyczne dla zdrowych zębów" },
+            { name: "Ruffus", description: "Naturalne gryzaki i suszone przysmaki" },
+            { name: "Whimzees", description: "Wegańskie przysmaki dentystyczne" },
+            { name: "Maced", description: "Suszone przysmaki treningowe" }
+        ]
+    },
+    {
+        category: "Suplementy",
+        icon: "💊",
+        items: [
+            { name: "VetExpert", description: "Profesjonalne suplementy weterynaryjne" },
+            { name: "Beaphar", description: "Witaminy i minerały dla zwierząt" },
+            { name: "Caniviton", description: "Wsparcie stawów i chrząstki" },
+            { name: "Foresto", description: "Ochrona przed pasożytami" }
+        ]
+    }
+];
 ---
 
 <Layout title="Produkty - ANIMALS">
@@ -8,5 +51,84 @@ import Hero from '../components/Hero.astro';
         title="Nasze Produkty"
         description="Szeroki wybór wysokiej jakości karm i akcesoriów dla Twojego pupila"
     />
-    <!-- Rest of the content -->
+
+    <div class="bg-gradient-to-b from-primary-50 to-white min-h-screen">
+        <div class="container mx-auto px-4 py-16">
+            <div class="max-w-7xl mx-auto space-y-24">
+                {products.map((category) => (
+                    <section class="relative">
+                        <!-- Category Header -->
+                        <div class="flex items-center gap-6 mb-12">
+                            <div class="w-16 h-16 bg-primary-100 rounded-2xl flex items-center justify-center text-3xl">
+                                {category.icon}
+                            </div>
+                            <h2 class="text-3xl md:text-4xl font-display font-bold text-primary-900">
+                                {category.category}
+                            </h2>
+                        </div>
+
+                        <!-- Products Grid -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                            {category.items.map((product) => (
+                                <div class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 p-6 hover:-translate-y-1">
+                                    <div class="space-y-4">
+                                        <h3 class="text-xl font-bold text-primary-900 group-hover:text-accent-500 transition-colors">
+                                            {product.name}
+                                        </h3>
+                                        <p class="text-primary-600 text-sm leading-relaxed">
+                                            {product.description}
+                                        </p>
+                                        <div class="pt-4">
+                                            <a 
+                                                href="/kontakt" 
+                                                class="inline-flex items-center text-accent-500 font-medium hover:text-accent-600 transition-colors"
+                                            >
+                                                Dowiedz się więcej
+                                                <svg class="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <!-- Decorative Elements -->
+                        <div class="absolute -right-4 top-1/2 -translate-y-1/2 w-24 h-24 bg-accent-500/5 rounded-full blur-2xl"></div>
+                        <div class="absolute -left-8 bottom-0 w-32 h-32 bg-primary-500/5 rounded-full blur-3xl"></div>
+                    </section>
+                ))}
+
+                <!-- Contact Section -->
+                <div class="bg-gradient-to-br from-primary-900 to-primary-800 rounded-3xl p-8 md:p-12 mt-24 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-[url('/pattern.svg')] opacity-5"></div>
+                    <div class="relative">
+                        <div class="max-w-3xl">
+                            <h2 class="text-3xl md:text-4xl font-display font-bold text-white mb-6">
+                                Potrzebujesz pomocy w wyborze?
+                            </h2>
+                            <p class="text-primary-100 mb-8 text-lg">
+                                Nasi eksperci pomogą dobrać odpowiednią karmę i akcesoria dla Twojego pupila.
+                            </p>
+                            <div class="flex flex-wrap gap-4">
+                                <a 
+                                    href="/kontakt" 
+                                    class="bg-accent-500 text-white px-8 py-4 rounded-xl font-medium hover:bg-accent-600 transition-colors shadow-lg hover:shadow-xl"
+                                >
+                                    Skontaktuj się z nami
+                                </a>
+                                <a 
+                                    href="tel:886147831" 
+                                    class="bg-white/10 text-white px-8 py-4 rounded-xl font-medium hover:bg-white/20 transition-colors backdrop-blur-sm"
+                                >
+                                    Zadzwoń teraz
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </Layout> 

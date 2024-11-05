@@ -46,33 +46,29 @@
         const pets = document.querySelectorAll<HTMLElement>('.pet-element');
         
         pets.forEach(pet => {
-            // Random delay for initial animation
             pet.style.animationDelay = `${Math.random() * 2}s`;
             
-            pet.addEventListener('mouseover', () => {
-                // Random jump animation on hover
-                const jumpHeight = Math.random() * 20 + 20; // Random jump between 20-40px
-                const rotation = (Math.random() - 0.5) * 40; // Random rotation between -20 and 20 degrees
+            pet.addEventListener('mouseover', (e: MouseEvent) => {
+                const jumpHeight = Math.random() * 20 + 20;
+                const rotation = (Math.random() - 0.5) * 40;
                 
-                pet.style.transform = `translateY(-${jumpHeight}px) rotate(${rotation}deg) scale(1.4)`;
-                pet.style.opacity = '1';
+                (e.currentTarget as HTMLElement).style.transform = `translateY(-${jumpHeight}px) rotate(${rotation}deg) scale(1.4)`;
+                (e.currentTarget as HTMLElement).style.opacity = '1';
             });
 
-            pet.addEventListener('mouseout', () => {
-                // Reset to original floating animation
-                pet.style.transform = '';
-                pet.style.opacity = '0.6';
+            pet.addEventListener('mouseout', (e: MouseEvent) => {
+                (e.currentTarget as HTMLElement).style.transform = '';
+                (e.currentTarget as HTMLElement).style.opacity = '0.6';
             });
 
-            // Add click interaction
-            pet.addEventListener('click', () => {
-                // Create a playful bounce effect
-                pet.style.transform = 'scale(0.8)';
+            pet.addEventListener('click', (e: MouseEvent) => {
+                const target = e.currentTarget as HTMLElement;
+                target.style.transform = 'scale(0.8)';
                 setTimeout(() => {
-                    pet.style.transform = 'scale(1.6)';
+                    target.style.transform = 'scale(1.6)';
                 }, 150);
                 setTimeout(() => {
-                    pet.style.transform = '';
+                    target.style.transform = '';
                 }, 300);
             });
         });
