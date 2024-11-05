@@ -267,32 +267,53 @@ const { title } = Astro.props;
 		</div>
 
 		<script>
+			let currentButton: HTMLButtonElement | null = null;
+			let currentMenu: HTMLElement | null = null;
+			let currentMenuIcon: Element | null = null;
+			let currentCloseIcon: Element | null = null;
+
+			function getElements() {
+				currentButton = document.getElementById('mobile-menu-button') as HTMLButtonElement;
+				currentMenu = document.getElementById('mobile-menu') as HTMLElement;
+				currentMenuIcon = document.querySelector('.mobile-menu-icon');
+				currentCloseIcon = document.querySelector('.mobile-menu-close');
+			}
+
+			function closeMenu() {
+				if (!currentMenu || !currentMenuIcon || !currentCloseIcon || !currentButton) return;
+				
+				currentMenu.classList.add('hidden');
+				currentMenuIcon.classList.remove('hidden');
+				currentCloseIcon.classList.add('hidden');
+				currentButton.setAttribute('aria-expanded', 'false');
+				document.body.style.overflow = '';
+			}
+
+			function openMenu() {
+				if (!currentMenu || !currentMenuIcon || !currentCloseIcon || !currentButton) return;
+				
+				currentMenu.classList.remove('hidden');
+				currentMenuIcon.classList.add('hidden');
+				currentCloseIcon.classList.remove('hidden');
+				currentButton.setAttribute('aria-expanded', 'true');
+				document.body.style.overflow = 'hidden';
+			}
+
 			function setupMobileMenu() {
-				const button = document.getElementById('mobile-menu-button') as HTMLButtonElement;
-				const menu = document.getElementById('mobile-menu');
-				const menuIcon = document.querySelector('.mobile-menu-icon');
-				const closeIcon = document.querySelector('.mobile-menu-close');
+				// Get fresh references to DOM elements
+				getElements();
 
-				if (!button || !menu || !menuIcon || !closeIcon) return;
+				if (!currentButton || !currentMenu || !currentMenuIcon || !currentCloseIcon) return;
 
-				function closeMenu() {
-					menu.classList.add('hidden');
-					menuIcon.classList.remove('hidden');
-					closeIcon.classList.add('hidden');
-					button.setAttribute('aria-expanded', 'false');
-					document.body.style.overflow = '';
-				}
+				// Remove existing event listeners if any
+				const newButton = currentButton.cloneNode(true) as HTMLButtonElement;
+				currentButton.parentNode?.replaceChild(newButton, currentButton);
+				currentButton = newButton;
 
-				function openMenu() {
-					menu.classList.remove('hidden');
-					menuIcon.classList.add('hidden');
-					closeIcon.classList.remove('hidden');
-					button.setAttribute('aria-expanded', 'true');
-					document.body.style.overflow = 'hidden';
-				}
-
-				button.addEventListener('click', () => {
-					const isExpanded = button.getAttribute('aria-expanded') === 'true';
+				// Add click handler to button
+				currentButton.addEventListener('click', (e) => {
+					e.preventDefault();
+					const isExpanded = currentButton?.getAttribute('aria-expanded') === 'true';
 					if (isExpanded) {
 						closeMenu();
 					} else {
@@ -301,19 +322,21 @@ const { title } = Astro.props;
 				});
 
 				// Close menu when clicking links
-				menu.querySelectorAll('a').forEach(link => {
+				currentMenu.querySelectorAll('a').forEach(link => {
 					link.addEventListener('click', closeMenu);
 				});
 
 				// Close menu when clicking outside
 				document.addEventListener('click', (event) => {
 					const target = event.target as Node;
-					if (!button.contains(target) && !menu.contains(target)) {
+					if (currentButton && currentMenu && 
+						!currentButton.contains(target) && 
+						!currentMenu.contains(target)) {
 						closeMenu();
 					}
 				});
 
-				// Close menu on resize if screen becomes large
+				// Close menu on resize
 				window.addEventListener('resize', () => {
 					if (window.innerWidth >= 1024) {
 						closeMenu();
@@ -321,11 +344,20 @@ const { title } = Astro.props;
 				});
 			}
 
-			// Setup on initial load
+			// Initial setup
 			setupMobileMenu();
 
-			// Re-setup after view transitions
-			document.addEventListener('astro:page-load', setupMobileMenu);
+			// Handle view transitions
+			document.addEventListener('astro:page-load', () => {
+				getElements(); // Get fresh references after page load
+				setupMobileMenu();
+			});
+
+			// Handle content updates
+			document.addEventListener('astro:after-swap', () => {
+				getElements(); // Get fresh references after content swap
+				setupMobileMenu();
+			});
 		</script>
 	</body>
 </html>
