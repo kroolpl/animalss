@@ -300,7 +300,6 @@ const { title } = Astro.props;
 			}
 
 			function setupMobileMenu() {
-				// Get fresh references to DOM elements
 				getElements();
 
 				if (!currentButton || !currentMenu || !currentMenuIcon || !currentCloseIcon) return;
@@ -322,8 +321,17 @@ const { title } = Astro.props;
 				});
 
 				// Close menu when clicking links
-				currentMenu.querySelectorAll('a').forEach(link => {
-					link.addEventListener('click', closeMenu);
+				const menuLinks = currentMenu.querySelectorAll('a');
+				menuLinks.forEach(link => {
+					link.addEventListener('click', (e) => {
+						e.preventDefault();
+						const href = link.getAttribute('href');
+						closeMenu();
+						// Use a small timeout to ensure the menu closes smoothly before navigation
+						setTimeout(() => {
+							if (href) window.location.href = href;
+						}, 150);
+					});
 				});
 
 				// Close menu when clicking outside
@@ -349,13 +357,13 @@ const { title } = Astro.props;
 
 			// Handle view transitions
 			document.addEventListener('astro:page-load', () => {
-				getElements(); // Get fresh references after page load
+				getElements();
 				setupMobileMenu();
 			});
 
 			// Handle content updates
 			document.addEventListener('astro:after-swap', () => {
-				getElements(); // Get fresh references after content swap
+				getElements();
 				setupMobileMenu();
 			});
 		</script>
