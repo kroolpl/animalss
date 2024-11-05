@@ -1,7 +1,6 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
-import CookieConsent from '../components/CookieConsent.astro';
 
 interface Props {
 	title: string;
@@ -406,8 +405,6 @@ const { title } = Astro.props;
 			// Re-setup after view transitions
 			document.addEventListener('astro:page-load', setupParallax);
 		</script>
-
-		<CookieConsent />
 	</body>
 </html>
 
