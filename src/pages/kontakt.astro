@@ -1,20 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
 ---
 
 <Layout title="Kontakt - ANIMALS">
-	<!-- Hero Section -->
-	<div class="relative bg-gradient-to-b from-primary-900 to-primary-800 text-white">
-		<div class="absolute inset-0 bg-[url('/pattern.svg')] opacity-5"></div>
-		<div class="absolute top-20 right-20 w-64 h-64 bg-accent-500/10 rounded-full blur-3xl"></div>
-		<div class="absolute bottom-10 left-10 w-96 h-96 bg-primary-700/20 rounded-full blur-3xl"></div>
-		<div class="container mx-auto px-4 py-24 relative">
-			<h1 class="font-display text-5xl md:text-6xl font-bold text-center mb-6">Kontakt</h1>
-			<p class="text-center text-primary-100 max-w-2xl mx-auto text-lg">
-				Jesteśmy tutaj, aby odpowiedzieć na Twoje pytania i pomóc w wyborze najlepszej karmy dla Twojego pupila.
-			</p>
-		</div>
-	</div>
+	<Hero 
+		title="Kontakt"
+		description="Jesteśmy tutaj, aby odpowiedzieć na Twoje pytania i pomóc w wyborze najlepszej karmy dla Twojego pupila."
+	/>
 
 	<!-- Main Content -->
 	<div class="bg-gradient-to-b from-primary-50 to-white">

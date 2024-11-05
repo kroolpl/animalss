@@ -2,21 +2,17 @@
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import Hero from '../components/Hero.astro';
 
 const porady = await getCollection('porady');
 const sortedPorady = porady.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
 
 <Layout title="Porady - ANIMALS">
-	<div class="relative bg-gradient-to-b from-primary-900 to-primary-800 text-white">
-		<div class="absolute inset-0 bg-[url('/pattern.svg')] opacity-5"></div>
-		<div class="container mx-auto px-4 py-24 relative">
-			<h1 class="font-display text-5xl md:text-6xl font-bold text-center mb-6">Porady i artykuły</h1>
-			<p class="text-center text-primary-100 max-w-2xl mx-auto text-lg">
-				Znajdziesz tu praktyczne wskazówki dotyczące żywienia zwierząt i najnowsze informacje ze świata karmy premium.
-			</p>
-		</div>
-	</div>
+	<Hero 
+		title="Porady i Artykuły"
+		description="Praktyczne wskazówki i profesjonalne porady dotyczące żywienia i pielęgnacji zwierząt"
+	/>
 
 	<div class="bg-gradient-to-b from-primary-50 to-white">
 		<div class="container mx-auto px-4 py-16">

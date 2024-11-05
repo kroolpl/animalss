@@ -5,22 +5,14 @@ import dyplom1 from '../assets/dyplom1.jpg';
 import dyplom2 from '../assets/dyplom2.jpg';
 import dyplom3 from '../assets/dyplom3.jpg';
 import dyplom4 from '../assets/dyplom4.jpg';
+import Hero from '../components/Hero.astro';
 ---
 
 <Layout title="Kwalifikacje - ANIMALS">
-    <!-- Hero Section -->
-    <div class="relative bg-gradient-to-b from-primary-900 to-primary-800 text-white">
-        <div class="absolute inset-0 bg-[url('/pattern.svg')] opacity-5"></div>
-        <div class="absolute top-20 right-20 w-64 h-64 bg-accent-500/10 rounded-full blur-3xl"></div>
-        <div class="absolute bottom-10 left-10 w-96 h-96 bg-primary-700/20 rounded-full blur-3xl"></div>
-        <div class="container mx-auto px-4 py-24 relative">
-            <h1 class="font-display text-5xl md:text-6xl font-bold text-center mb-6">Nasze Kwalifikacje</h1>
-            <p class="text-center text-primary-100 max-w-2xl mx-auto text-lg">
-                Poznaj nasze certyfikaty i dyplomy potwierdzające naszą wiedzę i kompetencje w zakresie żywienia zwierząt
-            </p>
-        </div>
-    </div>
-
+    <Hero 
+        title="Nasze Kwalifikacje"
+        description="Poznaj nasze certyfikaty i dyplomy potwierdzające naszą wiedzę i kompetencje w zakresie żywienia zwierząt"
+    />
     <!-- Main Content -->
     <div class="bg-gradient-to-b from-primary-50 to-white min-h-screen">
         <div class="container mx-auto px-4 py-16">

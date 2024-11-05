@@ -367,6 +367,40 @@ const { title } = Astro.props;
 				setupMobileMenu();
 			});
 		</script>
+
+		<script>
+			function setupParallax() {
+				const handleParallax = () => {
+					const scrolled = window.scrollY;
+					
+					// Find all elements with parallax classes
+					document.querySelectorAll('.parallax-bg').forEach((element) => {
+						const speed = 0.5; // Lower number = more subtle effect
+						const yPos = -(scrolled * speed);
+						element.style.transform = `translate3d(0, ${yPos}px, 0)`;
+					});
+
+					document.querySelectorAll('.parallax-content').forEach((element) => {
+						const speed = 0.2; // Even more subtle for content
+						const yPos = -(scrolled * speed);
+						element.style.transform = `translate3d(0, ${yPos}px, 0)`;
+					});
+				};
+
+				window.addEventListener('scroll', handleParallax);
+
+				// Cleanup
+				return () => {
+					window.removeEventListener('scroll', handleParallax);
+				};
+			}
+
+			// Setup on initial load
+			setupParallax();
+
+			// Re-setup after view transitions
+			document.addEventListener('astro:page-load', setupParallax);
+		</script>
 	</body>
 </html>
 
