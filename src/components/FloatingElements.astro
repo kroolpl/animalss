@@ -1,32 +1,86 @@
 ---
 ---
 <div class="absolute inset-0 pointer-events-none overflow-hidden">
-    <div class="floating-element absolute top-[15%] left-[10%] w-8 h-8 text-3xl animate-float-slow opacity-40">🐕</div>
-    <div class="floating-element absolute top-[30%] right-[15%] w-8 h-8 text-3xl animate-float-medium opacity-40">🐱</div>
-    <div class="floating-element absolute bottom-[20%] left-[20%] w-8 h-8 text-3xl animate-float-fast opacity-40">🐾</div>
-    <div class="floating-element absolute bottom-[30%] right-[25%] w-8 h-8 text-3xl animate-float-slow opacity-40">🦴</div>
+    <!-- Top row -->
+    <div class="pet-element absolute top-[25%] left-[10%] w-8 h-8 text-3xl" style="--delay: 0s; --duration: 7.5s">🐕</div>
+    <div class="pet-element absolute top-[30%] right-[15%] w-8 h-8 text-3xl" style="--delay: 1.5s; --duration: 8.2s">🐱</div>
+    
+    <!-- Middle row -->
+    <div class="pet-element absolute top-[45%] left-[25%] w-8 h-8 text-3xl" style="--delay: 0.8s; --duration: 6.8s">🐰</div>
+    <div class="pet-element absolute top-[50%] right-[30%] w-8 h-8 text-3xl" style="--delay: 2.1s; --duration: 7.8s">🦜</div>
+    
+    <!-- Bottom row -->
+    <div class="pet-element absolute bottom-[20%] left-[20%] w-8 h-8 text-3xl" style="--delay: 1.2s; --duration: 8.5s">🐾</div>
+    <div class="pet-element absolute bottom-[25%] right-[25%] w-8 h-8 text-3xl" style="--delay: 0.5s; --duration: 7.2s">🐹</div>
+    <div class="pet-element absolute bottom-[30%] left-[40%] w-8 h-8 text-3xl" style="--delay: 1.8s; --duration: 6.5s">🦮</div>
 </div>
 
 <style>
-    @keyframes float-slow {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        50% { transform: translateY(-20px) rotate(5deg); }
+    .pet-element {
+        opacity: 0.6;
+        animation: float-around var(--duration) ease-in-out infinite;
+        animation-delay: var(--delay);
     }
-    @keyframes float-medium {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        50% { transform: translateY(-15px) rotate(-5deg); }
+
+    @keyframes float-around {
+        0% {
+            transform: translate(0, 0) rotate(0deg);
+        }
+        25% {
+            transform: translate(15px, -20px) rotate(8deg);
+        }
+        50% {
+            transform: translate(-5px, -35px) rotate(-5deg);
+        }
+        75% {
+            transform: translate(-20px, -15px) rotate(3deg);
+        }
+        100% {
+            transform: translate(0, 0) rotate(0deg);
+        }
     }
-    @keyframes float-fast {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        50% { transform: translateY(-10px) rotate(3deg); }
+</style>
+
+<script>
+    function setupPetInteractions() {
+        const pets = document.querySelectorAll<HTMLElement>('.pet-element');
+        
+        pets.forEach(pet => {
+            // Random delay for initial animation
+            pet.style.animationDelay = `${Math.random() * 2}s`;
+            
+            pet.addEventListener('mouseover', () => {
+                // Random jump animation on hover
+                const jumpHeight = Math.random() * 20 + 20; // Random jump between 20-40px
+                const rotation = (Math.random() - 0.5) * 40; // Random rotation between -20 and 20 degrees
+                
+                pet.style.transform = `translateY(-${jumpHeight}px) rotate(${rotation}deg) scale(1.4)`;
+                pet.style.opacity = '1';
+            });
+
+            pet.addEventListener('mouseout', () => {
+                // Reset to original floating animation
+                pet.style.transform = '';
+                pet.style.opacity = '0.6';
+            });
+
+            // Add click interaction
+            pet.addEventListener('click', () => {
+                // Create a playful bounce effect
+                pet.style.transform = 'scale(0.8)';
+                setTimeout(() => {
+                    pet.style.transform = 'scale(1.6)';
+                }, 150);
+                setTimeout(() => {
+                    pet.style.transform = '';
+                }, 300);
+            });
+        });
     }
-    .animate-float-slow {
-        animation: float-slow 6s ease-in-out infinite;
-    }
-    .animate-float-medium {
-        animation: float-medium 5s ease-in-out infinite;
-    }
-    .animate-float-fast {
-        animation: float-fast 4s ease-in-out infinite;
-    }
-</style> 
+
+    // Setup on initial load
+    setupPetInteractions();
+
+    // Re-setup after view transitions
+    document.addEventListener('astro:page-load', setupPetInteractions);
+</script> 
