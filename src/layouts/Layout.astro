@@ -254,18 +254,27 @@ const { title, description } = Astro.props;
         <!-- Mobile Menu Script -->
         <script>
             function setupMobileMenu() {
+                console.log('Setting up mobile menu...'); // Debug log
+
                 const button = document.getElementById('mobile-menu-button');
                 const menu = document.getElementById('mobile-menu');
                 const menuIcon = document.querySelector('.mobile-menu-icon');
                 const closeIcon = document.querySelector('.mobile-menu-close');
 
-                if (!button || !menu || !menuIcon || !closeIcon) return;
+                if (!button || !menu || !menuIcon || !closeIcon) {
+                    console.log('Missing elements:', { button, menu, menuIcon, closeIcon }); // Debug log
+                    return;
+                }
+
+                // Clean up old event listeners
+                const newButton = button.cloneNode(true);
+                button.parentNode.replaceChild(newButton, button);
 
                 function closeMenu() {
                     menu.classList.add('hidden');
                     menuIcon.classList.remove('hidden');
                     closeIcon.classList.add('hidden');
-                    button.setAttribute('aria-expanded', 'false');
+                    newButton.setAttribute('aria-expanded', 'false');
                     document.body.style.overflow = '';
                 }
 
@@ -273,16 +282,13 @@ const { title, description } = Astro.props;
                     menu.classList.remove('hidden');
                     menuIcon.classList.add('hidden');
                     closeIcon.classList.remove('hidden');
-                    button.setAttribute('aria-expanded', 'true');
+                    newButton.setAttribute('aria-expanded', 'true');
                     document.body.style.overflow = 'hidden';
                 }
 
-                // Remove previous event listeners if they exist
-                button.removeEventListener('click', toggleMenu);
-                
-                function toggleMenu(e) {
-                    e.stopPropagation(); // Prevent event bubbling
-                    const isExpanded = button.getAttribute('aria-expanded') === 'true';
+                function toggleMenu() {
+                    console.log('Toggle menu clicked'); // Debug log
+                    const isExpanded = newButton.getAttribute('aria-expanded') === 'true';
                     if (isExpanded) {
                         closeMenu();
                     } else {
@@ -291,12 +297,12 @@ const { title, description } = Astro.props;
                 }
 
                 // Add click event listener
-                button.addEventListener('click', toggleMenu);
+                newButton.addEventListener('click', toggleMenu);
 
                 // Close menu when clicking outside
                 document.addEventListener('click', (event) => {
                     const target = event.target as Node;
-                    if (!button.contains(target) && !menu.contains(target)) {
+                    if (!newButton.contains(target) && !menu.contains(target)) {
                         closeMenu();
                     }
                 });
@@ -312,8 +318,12 @@ const { title, description } = Astro.props;
                 document.addEventListener('astro:after-navigation', closeMenu);
             }
 
-            // Setup on initial page load
-            document.addEventListener('DOMContentLoaded', setupMobileMenu);
+            // Run setup immediately if document is already loaded
+            if (document.readyState === 'complete' || document.readyState === 'interactive') {
+                setupMobileMenu();
+            } else {
+                document.addEventListener('DOMContentLoaded', setupMobileMenu);
+            }
             
             // Setup after each view transition
             document.addEventListener('astro:page-load', setupMobileMenu);
