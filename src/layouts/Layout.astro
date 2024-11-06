@@ -101,6 +101,7 @@ const { title, description } = Astro.props;
             <!-- Mobile Menu -->
             <div id="mobile-menu" 
                  class="fixed inset-x-0 top-[64px] bg-gradient-to-b from-primary-900/95 to-primary-800/95 backdrop-blur-md lg:hidden hidden p-4 shadow-lg z-50"
+                 transition:persist
             >
                 <nav class="space-y-4">
                     <a href="/" class="block w-full px-4 py-3 text-primary-100 hover:text-white hover:bg-white/10 rounded-xl transition-colors">
@@ -115,6 +116,29 @@ const { title, description } = Astro.props;
                     <a href="/porady" class="block w-full px-4 py-3 text-primary-100 hover:text-white hover:bg-white/10 rounded-xl transition-colors">
                         Porady
                     </a>
+                    <!-- Social and Contact buttons -->
+                    <div class="pt-4 space-y-3">
+                        <a 
+                            href="https://www.facebook.com/profile.php?id=61554985716749" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            class="flex items-center gap-2 w-full px-4 py-3 bg-[#1877F2] text-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0d6efd]/90"
+                        >
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
+                            </svg>
+                            <span class="font-medium">Obserwuj nas na Facebooku</span>
+                        </a>
+                        <a 
+                            href="/kontakt" 
+                            class="flex items-center gap-2 w-full px-4 py-3 bg-accent-500 text-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-accent-600"
+                        >
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            <span class="font-medium">Skontaktuj się z nami</span>
+                        </a>
+                    </div>
                 </nav>
             </div>
         </header>
@@ -239,36 +263,50 @@ const { title, description } = Astro.props;
 
                 if (!button || !menu || !menuIcon || !closeIcon) return;
 
+                function closeMenu() {
+                    menu.classList.add('hidden');
+                    menuIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                    button.setAttribute('aria-expanded', 'false');
+                    document.body.style.overflow = '';
+                }
+
+                function openMenu() {
+                    menu.classList.remove('hidden');
+                    menuIcon.classList.add('hidden');
+                    closeIcon.classList.remove('hidden');
+                    button.setAttribute('aria-expanded', 'true');
+                    document.body.style.overflow = 'hidden';
+                }
+
                 function toggleMenu() {
                     const isExpanded = button.getAttribute('aria-expanded') === 'true';
-                    
                     if (isExpanded) {
-                        menu.classList.add('hidden');
-                        menuIcon.classList.remove('hidden');
-                        closeIcon.classList.add('hidden');
-                        button.setAttribute('aria-expanded', 'false');
-                        document.body.style.overflow = '';
+                        closeMenu();
                     } else {
-                        menu.classList.remove('hidden');
-                        menuIcon.classList.add('hidden');
-                        closeIcon.classList.remove('hidden');
-                        button.setAttribute('aria-expanded', 'true');
-                        document.body.style.overflow = 'hidden';
+                        openMenu();
                     }
                 }
 
                 button.addEventListener('click', toggleMenu);
 
+                // Close menu when clicking outside
+                document.addEventListener('click', (event) => {
+                    const target = event.target as Node;
+                    if (!button.contains(target) && !menu.contains(target)) {
+                        closeMenu();
+                    }
+                });
+
                 // Close menu on window resize
                 window.addEventListener('resize', () => {
                     if (window.innerWidth >= 1024) {
-                        menu.classList.add('hidden');
-                        menuIcon.classList.remove('hidden');
-                        closeIcon.classList.add('hidden');
-                        button.setAttribute('aria-expanded', 'false');
-                        document.body.style.overflow = '';
+                        closeMenu();
                     }
                 });
+
+                // Close menu on navigation
+                document.addEventListener('astro:after-navigation', closeMenu);
             }
 
             // Setup on initial load and after view transitions
