@@ -23,7 +23,7 @@ const { title, description } = Astro.props;
     </head>
     <body class="antialiased">
         <!-- Header/Navbar -->
-        <header class="fixed top-0 left-0 right-0 z-40" transition:persist transition:animate="none">
+        <header class="fixed top-0 left-0 right-0 z-40">
             <div class="bg-gradient-to-br from-primary-900 to-primary-800 backdrop-blur-sm shadow-lg">
                 <nav class="container mx-auto px-4 py-2">
                     <div class="flex items-center justify-between">
@@ -33,7 +33,6 @@ const { title, description } = Astro.props;
                                     src="/images/logo.png" 
                                     alt="ANIMALS Logo" 
                                     class="h-12 w-auto object-contain"
-                                    transition:persist
                                 />
                             </div>
                             <span class="hidden sm:inline text-2xl font-display font-extrabold tracking-wide text-white">
@@ -43,7 +42,7 @@ const { title, description } = Astro.props;
 
                         <!-- Desktop Navigation -->
                         <div class="hidden lg:flex items-center gap-6">
-                            <nav class="flex items-center gap-6" transition:persist>
+                            <nav class="flex items-center gap-6">
                                 <a href="/" class="text-primary-100 hover:text-white transition-all duration-300 px-3 py-2 rounded-lg hover:bg-white/10">
                                     Strona główna
                                 </a>
@@ -101,7 +100,6 @@ const { title, description } = Astro.props;
             <!-- Mobile Menu -->
             <div id="mobile-menu" 
                  class="fixed inset-x-0 top-[64px] bg-gradient-to-b from-primary-900/95 to-primary-800/95 backdrop-blur-md lg:hidden hidden p-4 shadow-lg z-50"
-                 transition:persist
             >
                 <nav class="space-y-4">
                     <a href="/" class="block w-full px-4 py-3 text-primary-100 hover:text-white hover:bg-white/10 rounded-xl transition-colors">
