@@ -96,7 +96,11 @@ const pageDescription = "Oferujemy najwyższej jakości karmę dla psów i kotó
     </div>
 
     <!-- Why Choose Us Section -->
-    <section class="container mx-auto px-4 py-24">
+    <section class="container mx-auto px-4 py-24 relative overflow-hidden">
+        <!-- Add decorative blobs -->
+        <div class="absolute top-20 right-0 w-96 h-96 bg-primary-100/30 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute bottom-10 left-0 w-72 h-72 bg-accent-400/10 rounded-full blur-3xl -z-10"></div>
+        
         <h2 class="text-3xl md:text-4xl font-display font-bold text-center mb-16">
             Dlaczego warto nas wybrać?
         </h2>
@@ -126,7 +130,12 @@ const pageDescription = "Oferujemy najwyższej jakości karmę dla psów i kotó
     </section>
 
     <!-- Products Section -->
-    <section class="bg-gradient-to-br from-primary-50 via-white to-primary-50 py-24">
+    <section class="bg-gradient-to-br from-primary-50 via-white to-primary-50 py-24 relative overflow-hidden">
+        <!-- Add floating geometric shapes -->
+        <div class="absolute top-40 left-20 w-64 h-64 bg-accent-500/5 rounded-3xl rotate-12 blur-2xl -z-10"></div>
+        <div class="absolute bottom-20 right-20 w-80 h-80 bg-primary-200/10 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-to-r from-accent-500/5 to-primary-500/5 rounded-full blur-3xl -z-10"></div>
+        
         <div class="container mx-auto px-4">
             <h2 class="text-3xl md:text-4xl font-display font-bold text-center mb-16">
                 Nasze produkty
@@ -169,7 +178,11 @@ const pageDescription = "Oferujemy najwyższej jakości karmę dla psów i kotó
     </section>
 
     <!-- Pet Testimonials Section -->
-    <section class="container mx-auto px-4 py-24">
+    <section class="container mx-auto px-4 py-24 relative overflow-hidden">
+        <!-- Add floating accent elements -->
+        <div class="absolute -top-10 right-20 w-72 h-72 bg-accent-400/10 rounded-full blur-3xl -z-10 animate-float-slow"></div>
+        <div class="absolute bottom-20 left-10 w-96 h-96 bg-primary-100/30 rounded-full blur-3xl -z-10 animate-float-medium"></div>
+        
         <h2 class="text-3xl md:text-4xl font-display font-bold text-center mb-16">
             Co mówią nasi czworonożni klienci
         </h2>
@@ -264,7 +277,13 @@ const pageDescription = "Oferujemy najwyższej jakości karmę dla psów i kotó
     </section>
 
     <!-- Contact Section -->
-    <section class="container mx-auto px-4 py-24">
+    <section class="container mx-auto px-4 py-24 relative overflow-hidden">
+        <!-- Add subtle gradient accents -->
+        <div class="absolute top-0 left-0 w-full h-full">
+            <div class="absolute top-20 left-20 w-80 h-80 bg-accent-500/10 rounded-full blur-3xl -z-10"></div>
+            <div class="absolute bottom-40 right-20 w-96 h-96 bg-primary-200/20 rounded-full blur-3xl -z-10"></div>
+        </div>
+        
         <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden">
             <div class="grid md:grid-cols-2">
                 <div class="p-12 bg-gradient-to-br from-primary-800 to-primary-900 text-white relative overflow-hidden">
@@ -349,5 +368,31 @@ const pageDescription = "Oferujemy najwyższej jakości karmę dla psów i kotó
 
     .animate-slide-up {
         animation: slide-up 0.5s ease-out forwards;
+    }
+
+    @keyframes float-slow {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
+    .animate-float-slow {
+        animation: float-slow 3s infinite;
+    }
+
+    @keyframes float-medium {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-5px);
+        }
+    }
+
+    .animate-float-medium {
+        animation: float-medium 3s infinite;
     }
 </style>
